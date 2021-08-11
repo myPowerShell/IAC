@@ -5,7 +5,7 @@
 terraform init
 terraform fmt
 terraform validate
-terraform plan
-terraform apply -auto-approve
+terraform plan -out main.tfplan
+terraform apply main.tfplan
 
 terraform destroy -auto-approve
