@@ -1,4 +1,5 @@
 /.terraform
+.gitignore
 .terraform.lock.hcl
 main.tfplan
 terraform.tfstate
