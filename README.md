@@ -1,5 +1,6 @@
 # IAC
-#terraform
+#install AZ Cli
+#install terraform
 
 terraform init
 terraform fmt
