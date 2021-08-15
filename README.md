@@ -2,6 +2,10 @@
 #install AZ Cli
 #install terraform
 
+
+#install AWS Cli
+#install terraform
+
 terraform init
 terraform fmt
 terraform validate
