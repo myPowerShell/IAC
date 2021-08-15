@@ -1,6 +1,0 @@
-/.terraform
-.gitignore
-.terraform.lock.hcl
-main.tfplan
-main.destroy.tfplan
-terraform.tfstate
