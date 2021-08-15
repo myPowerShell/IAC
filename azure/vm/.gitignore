@@ -1,0 +1,8 @@
+/.terraform
+/.ssh
+.gitignore
+.terraform.lock.hcl
+main.tfplan
+main.destroy.tfplan
+terraform.tfstate
+terraform.tfstate.backup
