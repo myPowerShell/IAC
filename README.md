@@ -1,4 +1,4 @@
-# IAC
+# IaC
 #install AZ Cli
 #install terraform
 
