@@ -107,14 +107,14 @@ variable "server_username" {
   description = "Admin Username to access server"
   type        = string
   default     = "openvpn"
-  /* Use your own default name */
+  /* Use yourown default name */
 }
 
 variable "server_password" {
   description = "Admin Password to access server"
   type        = string
   default     = "password"
-  /* Use your own default password */
+  /* Use yourown default password */
 }
 
 resource "aws_eip_association" "eip_assoc" {
@@ -128,8 +128,8 @@ resource "aws_instance" "openvpn" {
   associate_public_ip_address = false
   subnet_id                   = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.allow_openvpn_in.id]
-  key_name                    = "your_Key"
-  /* Use your own key name */
+  key_name                    = "your_private_Key"
+  /* Use yourown key name */
   user_data = <<-EOF
               admin_user=${var.server_username}
               admin_pw=${var.server_password}
