@@ -35,16 +35,6 @@ resource "aws_subnet" "public" {
   }
 }
 
-resource "aws_subnet" "private" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.10.20.0/24"
-  availability_zone = "us-east-1a"
-  tags = {
-    Name = "private1-subnet"
-  }
-}
-
-
 
 resource "aws_internet_gateway" "gateway" {
   vpc_id = aws_vpc.main.id
@@ -68,37 +58,6 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.route.id
 }
 
-
-resource "aws_security_group" "allow_RDP_in" {
-  name        = "allow-RDP-in-sg"
-  description = "Allow RDP traffic"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "RDP from VPC"
-    from_port   = 3389
-    to_port     = 3389
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "ping icmp protocol"
-    from_port   = -1
-    to_port     = -1
-    protocol    = "icmp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-
-}
 
 
 resource "aws_security_group" "allow_openvpn_in" {
@@ -140,36 +99,9 @@ resource "aws_security_group" "allow_openvpn_in" {
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-
-
-
-
-
-
-
-resource "aws_instance" "JumpServer" {
-  ami                         = "ami-0685cb76db3624f25"
-  instance_type               = "t2.micro"
-  associate_public_ip_address = true
-  subnet_id                   = aws_subnet.public.id
-  vpc_security_group_ids      = [aws_security_group.allow_RDP_in.id]
-  key_name                    = "Virginia_Key"
-  /* Use your own key name */
-  count = 1
-
-  tags = {
-    Name = "JumpServer ${count.index}"
-  }
 
 }
+
 
 variable "server_username" {
   description = "Admin Username to access server"
@@ -217,6 +149,7 @@ resource "aws_eip" "lbip" {
   
 }
 
+# Output details from Provider platform for ephemeral on-demand OpenVPN setup for use
 
 output "JumpServer_addresses" {
   value = ["${aws_instance.JumpServer.*.public_dns}"]
