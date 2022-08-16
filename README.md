@@ -1,19 +1,19 @@
 # IaC
-#install AZ Cli
-#install terraform
+#install AZ Cli <br/>
+#install terraform <br/>
 
 
-#install AWS Cli
-#install terraform
+#install AWS Cli <br/>
+#install terraform <br/>
 
-terraform init
-terraform fmt
-terraform validate
-terraform plan -out main.tfplan
-terraform apply main.tfplan
+terraform init <br/>
+terraform fmt <br/>
+terraform validate <br/>
+terraform plan -out main.tfplan <br/>
+terraform apply main.tfplan <br/>
 
-terraform plan -destroy -out main.destroy.tfplan
-terraform apply main.destroy.tfplan
+terraform plan -destroy -out main.destroy.tfplan <br/>
+terraform apply main.destroy.tfplan <br/>
 
 
-terraform destroy -auto-approve
+terraform destroy -auto-approve <br/>
